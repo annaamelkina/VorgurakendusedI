@@ -7,7 +7,7 @@
         		var end_1 = new Date('03/04/2017 11:59 PM');
         		var timer_1 = setInterval(function () { showRemaining(end_1, "countdown_1", timer_1); }, 1000);
         </script>
-        <title>TERE</title>
+        <title>TERE-TERE!</title>
 
 	</head>
 	
@@ -24,7 +24,7 @@
        </table>
 	<?php echo 'Current PHP version: ' . phpversion();
 	echo phpversion();
-	?>
+	?><br>
 	
 	<?php 
     $host = "localhost";
@@ -36,13 +36,13 @@
     mysqli_query($l, "SET CHARACTER SET UTF8") or
             die("Error, ei saa andmebaasi charsetti seatud");
 
-    $sql = "SELECT apelsiin, banaan FROM 10162815_tabel";
+    $sql = "SELECT Nimi, Vanus, Aadress, Telefon, Riik, Linn FROM 10162815_tabel";
     $result = $l->query($sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "id: " . $row["apelsiin"]. " - Name: " . $row["banaan"]. "<br>";
+            echo "ID: " . $row["Nimi"]. "; Vanus: " . $row["Vanus"]. "; Aadress: " . $row["Aadress"]. "; Telefon: " . $row["Telefon"]. "; Riik: " . $row["Riik"]. "; Linn: " . $row["Linn"]. "<br>";
         }
     } else {
         echo "0 results";
@@ -51,5 +51,18 @@
     mysqli_close($l);
 	?>
 	 <script src="timer.js"></script>
+
+    <form method="post" action="form1.php" id="form1">
+        <?php if(isset($error_username)) echo $error_username; ?><br>
+        Nimi: <input type="text" name="username" placeholder="Kirjuta siia oma nimi"><br>
+        <?php if(isset($error_vanus)) echo $error_vanus; ?><br>
+        Vanus: <input type="number" name="vanus" placeholder="Kirjuta siia oma vanus"><br>
+        Telefon: <input type="text" name="telefon" placeholder="Kirjuta siia oma telefoninumber"><br>
+        Aadress: <input type="text" name="aadress" placeholder="Kirjuta siia oma aadress"><br>
+    </form>
+
+    <button type="submit" form="form1" value="Submit">Submit</button>
+
+
 	</body>
 </html>
